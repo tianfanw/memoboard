@@ -1,0 +1,98 @@
+extends layout
+
+block append stylesheet
+  link(rel='stylesheet', href='/stylesheets/colorbox.css')
+  link(rel='stylesheet', href='/stylesheets/jquery.confirm.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.css')
+  link(rel='stylesheet', href='/stylesheets/master.css')
+  link(rel='stylesheet', href='/stylesheets/home.css')
+
+
+block content
+  ul#header
+    li
+      img#logo(src='/images/logo.png')
+
+  div#menubtn
+    ul
+      li 
+        a#show-notices Notices
+          if user.hasNewNotice
+            b#new-notice-alert (new)
+      li
+        form#signout(method='post', action='/logout')
+          div
+            input#signoutimg(type='image',value='Sign Out', src='/images/signout.png')
+
+  div#noticeList
+    ul#notices
+
+  div#container.span10
+    div#hi
+      h3 Hi, #{user.username || 'Anonymous'}
+      //h4 Your Email: #{user.email}
+    
+    div#preview_div
+
+
+    hr.bs-docs-separator
+    div#board-list
+      legend My Boards
+
+      each board in boards
+        div.row.boardRow(id= board.id64 )
+          div.span3
+            
+            a(href= '/boards/' + board.id64 )
+              img.boardThumb(src=board.image_thumb200, border="0", onmouseover="showtrail('" + board.image_thumb400 + "', '', 400, 520)", onmouseout="hidetrail()")
+          div.span5
+            a(href= '/boards/' + board.id64 ) 
+              h3.boardName #{board.name}
+            div.boardInfo
+              div
+                p Created by: 
+                  a.creator.userName(rel="tooltip", data-placement="top")
+                  | &nbsp; at #{board.created}
+                p Last modified: 
+                  a.modifier.userName(rel="tooltip", data-placement="top")
+                  | &nbsp; at #{board.lastModified}
+              if board.isShared
+                p Shared board
+              else 
+                p Private board
+            if board.isShared
+              div.shared-list Shared with: 
+            div.boardButtons
+              a.boardView(href= board.image_origin, title= board.name) View
+              a.boardShare Share
+              a.boardDelete Delete
+        hr.bs-docs-separator
+
+      div.row
+        div.span4
+        div.span5
+          form#create(method='post', action='')
+            input(type='text', name='boardName', placeholder='board name...')
+            input(type='submit', value='New Board')
+
+  div#container.span2
+    div#usrInfo
+      h4 Your Email: #{user.email}
+      p Meomo Board is an small funny app. You can add notes, images and scrawl on your boards. You can also share your board with anyone you want. You can modify the boards with your friends together and chat with your friends at the same time! 
+      p Have fun in Memo Board!
+
+block append javascript
+  script(src='/javascripts/jquery.form.js')
+  script(src='/javascripts/mouseover_popup.js')
+  script(src='/javascripts/jquery.colorbox.js')
+  script(src='/javascripts/jquery.confirm.js')
+  script(src= '/javascripts/bootstrap.js')
+  script(src='/socket.io/socket.io.js')
+  !="<script>"
+  !="var g_username = '" + user.username + "';"
+  !="var g_user_id = '" + user._id + "';"
+  !="var socket = io.connect('http://' + window.location.hostname + ':' + window.location.port);"
+  !="</script>"
+  script(src='/javascripts/home.js')
+  script(src='/javascripts/notification.js')

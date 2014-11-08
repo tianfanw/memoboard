@@ -1,0 +1,241 @@
+extends layout
+
+block title
+  title Memo Board
+
+block append stylesheet
+  link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.css')
+  link(rel='stylesheet', href='/stylesheets/master.css')
+  link(rel='stylesheet', href='/stylesheets/board.css')
+  link(rel='stylesheet', href='/stylesheets/colorpicker.css')
+  if board.isShared
+    link(rel='stylesheet', href='/stylesheets/jsDatePick.css')
+
+block content
+  ul#header(style='background:' + board.bgColor + ';')
+    li
+      br
+    li
+      br
+    li
+      br
+    li
+      img#logo(src='/images/logo.png')
+    li
+      p#boardName This is board - #{board.name}
+    li
+      p#createTime Created at: #{board.created}
+    if board.isShared
+      li#online-users
+        p Online:
+
+    //a.btn(href='#myModal', role='button', data-toggle='modal') change background
+    img#changebg(href='#myModal', role = 'button', data-toggle='modal', src='/images/changebg.png')
+    #myModal.modal.hide.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') x
+        h3#myModalLabel Choose Background Image:
+      .modal-body
+        img#background1(width='130',height='130',data-dismiss='modal',src='/images/background-small1.png')
+        img#background2(width='130',height='130',data-dismiss='modal',src='/images/background-small2.png')
+        img#background3(width='130',height='130',data-dismiss='modal',src='/images/background-small3.png')
+        img#background4(width='130',height='130',data-dismiss='modal',src='/images/background-small4.png')
+        img#defaultbg(width='130',height='130',data-dismiss='modal',src='/images/defaultbg-small.png')
+      .modal-footer
+        button.btn(data-dismiss='modal', aria-hidden='true') Close
+
+  div#menubtn
+    ul
+      li
+        a#homebtn(href='/boards') Home
+      li
+        a#show-notices Notices
+      li
+        if user.hasNewNotice
+          b#new-notice-alert (new)
+      li
+        form#signout(method='post', action='/logout')
+          div
+            input#signoutimg(type='image', value='Sign Out', src= '/images/signout.png')
+
+  if board.isShared
+    div#cursors
+
+  #bd-wrapper
+    //#controls
+    canvas#canvas(width='1200', height='1600')
+    #commands
+      //p
+      //  | Add
+       // strong simple shapes
+       // | to canvas:
+      //button.rect Rectangle
+      //button.circle Circle
+      //button.triangle Triangle
+
+      img#leftbtnbg(src='/images/btnbg.png')
+      img#rightbtnbg(src='/images/btnbg.png')
+
+      img#add-image(title='add image', src='/images/imgbtn.png')
+
+      img#rasterize(title='rasterize', src='/images/pngbtn.png')
+
+      img.clear(title='clear board', src='/images/clearbtn.png')
+
+      img#add-text(title='add notes', src='/images/notebtn.png')
+
+      img#edit-text(title='edit notes', src='/images/editnote.png')
+
+      img#remove-selected(title='remove', src='/images/removebtn.png')
+
+      img#lock-rotation(title='lock rotation', src='/images/rotationbtn.png')
+
+      img#sharebtn(title='share board', src='/images/sharebtn.png')
+
+      //img#savebtn(title='save', src='/images/imgbtn.png')
+
+      if board.isShared
+        img#pollbtn(title='create a poll', src='/images/calendar.png')
+
+      img#drawing-mode(title='drawing mode', src='/images/drawbtn.png')
+      div#drawing-mode-options(style='display: none;')
+        p#widthNum Width:
+        input#drawing-line-width(value='10', size='2')
+        p#colorNum Color:
+        #colorSelector1
+          div(style='background-color: #000000;')
+        #colorpickerHolder1
+
+      img#cancel-drawing-mode(title='editing mode', src='/images/editbtn.png')
+
+    form#uploadForm(method='post', action='/boards/' + board.id64 + '/images', enctype='multipart/form-data')
+      div
+        input(type='file', name='uploadedImage')
+      div
+        input(type='submit',value='Upload')
+
+    div#editNote
+      textarea#text
+      button#confirmEdit OK
+      label#fontLabel(for='font-family') Font:
+      select#font-family
+        option Arial
+        option(selected='selected') Helvetica
+        option Myriad Pro
+        option Delicious
+        option Verdana
+        option Georgia
+        option Courier
+        option Comic Sans MS
+        option Impact
+        option Monaco
+        option Optima
+        option Hoefler Text
+        option Plaster
+        option Engagement
+      #colorSelector2
+        div(style='background-color: #00ff00;')
+      #colorpickerHolder2 
+    div#newNote
+      textarea#newtext(placeholder='Enter your note')
+      button#post-text Add note
+
+    
+
+    div#noticeList
+      ul#notices
+
+  if board.isShared
+    div#poll-popup
+      div#poll-form-wrap
+        form(method='post', action='/boards/' + board.id64 + '/poll')
+          #contentArea
+            #pollHeader(style='display: block;')
+              #pollInfo
+                h2#pollTitle(style='font-weight: bold;')
+                #pollLocation(style='font-weight: bold;')
+              #pollDetails
+
+            #generalStep(style='display: block;')
+              .generalInfo
+                p
+                  label(for='title') Title
+                p
+                  input#title.inputText(type='text', maxlength='64', placeholder='Please enter a title of 5~64 characters.')
+              .generalInfo
+                div
+                  label(for='location')
+                    | Location
+                    span.grey.smallText  (optional)
+                  p
+                    input#location.inputText.hintText(type='text', maxlength='128', placeholder='Enter a location', autocomplete='off')
+              .generalInfo
+                p
+                  label(for='initiatorName') Description
+                p
+                  input#description.inputText(type='text', maxlength='64')
+              div
+                input#back1(type='button', value='Back', disabled='disabled')
+                input#generalToDates(type='button', value='Next')
+            
+            #datesPickerStep(style='display: none;')
+              #calendar
+              #calendarResult
+              div(style='clear: both;')
+                input#datesBackToGeneral(type='button', value='Back')
+                input#addPoll(type='button', value='Add new poll')
+                input#datesToPoll(type='button', value='Next')
+            
+            #pollStep(style='display: none;')
+              form.clearfix
+                #pollContainer
+              div
+                input#pollBackToDates(type='button', value='Back')
+                input#pollFinish(type='button', value='Finish')
+      
+      div#poll-list Poll list
+      div#poll-info(style='display: none;') Poll information
+        div
+          p#poll-title
+          p#poll-location
+          p#poll-description
+        div#poll-choices
+
+    
+    a#chatslide(href='#') Chat!
+    div#chat          
+      div#conversation
+      div#inputword
+        input#data
+        input#datasend(type='button', value='send')
+
+block append javascript
+  script(src='/socket.io/socket.io.js')
+  !="<script>"
+  !="var g_username = '" + user.username + "';"
+  !="var g_user_id = '" + user._id + "';"
+  !="var g_board_id = '" + board._id + "';"
+  !="var g_board_id64 = '" + board.id64 + "';"
+  !="var g_board_name = '" + board.name + "';"
+  !="var g_board_is_shared = " + board.isShared + ";"
+  !="var socket = io.connect('http://' + window.location.hostname + ':' + window.location.port);"
+  !="</script>"
+  script(src='/javascripts/jquery.form.js')
+  script(src='/javascripts/colorpicker.js')
+  script(src='/javascripts/master.js')
+  script(src='/javascripts/fabric.js')
+  script(src='/javascripts/board.js')
+  script(src='/javascripts/upload.js')
+  script(src='/javascripts/notification.js')
+  script(src='/javascripts/boardanim.js')
+  script(src= '/javascripts/bootstrap.js')
+  !="<script>"
+  !="canvas.setBackgroundImage('" + board.bgImage + "', canvas.renderAll.bind(canvas));;"
+  !="</script>"
+  
+  if board.isShared
+    script(src='/javascripts/shared.js')
+    script(src='/javascripts/jsDatesPick-1.3.js')
+    script(src='/javascripts/calendar.js')
+    script(src='/javascripts/chat.js')

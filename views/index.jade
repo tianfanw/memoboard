@@ -1,0 +1,40 @@
+extends layout
+
+block append stylesheet
+  link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.css')
+  link(rel='stylesheet', href='/stylesheets/master.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+
+block content
+
+  div.span3.offset7#logIn
+    p#Welcome Welcome to #{title}
+    form(method='post', action='/login')
+      fieldset
+        //legend Sign In
+        != login_form
+        button(type='submit', class='btn') Sign In
+
+    hr.bs-docs-separator
+
+    form(method='post', action='/register')
+      fieldset
+        //legend Sign Up
+        != reg_form
+        button(type='submit', class='btn') Sign Up
+  img#logocloud(src='/images/logocloud2.png')
+  img#leaf(width='300', height='300',src='/images/leaf1.png')
+  img#cloud2(width='300', height='300',src='/images/cloud2.png')
+  img#cloud3(width='300', height='300',src='/images/cloud3.png')
+  img#cloud4(width='300', height='300',src='/images/cloud4.png')
+  img#pencil(width='20', height='15',src='/images/pencil.png')
+  img#imgicon(width='20', height='20',src='/images/imgicon.png')
+  
+
+
+
+block append javascript
+  script(src= '/javascripts/bootstrap.js')
+  script(src= '/javascripts/jsAnim.js')
+  script(src= '/javascripts/index.js')

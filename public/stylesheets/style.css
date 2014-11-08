@@ -1,0 +1,123 @@
+body {
+  /*padding: 50px;*/
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.error_msg {
+  color: red;
+}
+
+#mask {
+	display: none;
+	background: #000; 
+	position: fixed; left: 0; top: 0; 
+	z-index: 10;
+	width: 100%; height: 100%;
+	z-index: 999;
+	background:url('../images/ie.png');
+	background: -moz-linear-gradient(rgba(11,11,11,0.1), rgba(11,11,11,0.6)) repeat-x rgba(11,11,11,0.2);
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(11,11,11,0.1)), to(rgba(11,11,11,0.6))) repeat-x rgba(11,11,11,0.2);
+}
+
+#share-popup {
+	display:none;
+	z-index: 99999;	
+    background:#fff;
+	width:460px;
+	position:fixed;
+	left:50%;
+	top:50%;
+	margin:-75px 0 0 -230px;
+	border: 1px solid rgba(33, 33, 33, 0.6);
+	-moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	-webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#success-popup {
+	display:none;
+	font-size: 16px;
+	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+	z-index: 99999;	
+    background:#fff;
+    position:fixed;
+	left:50%;
+	top:50%;
+	margin: -30px 0 0 -200px;
+	padding-top: 8px;
+	color: #08c;
+	height: 30px;
+	width: 290px;
+	border: 2px solid #000;
+	box-shadow: 0px 0px 20px #999; /* CSS3 */
+    -moz-box-shadow: 0px 0px 20px #999; /* Firefox */
+    -webkit-box-shadow: 0px 0px 20px #999; /* Safari, Chrome */
+    -moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+    text-align: center;
+}
+
+#share-popup .share-title{
+	font:18px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	background:#fff;
+	padding: 30px 25px 0 25px;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+	color:#666;
+	background:none;
+	font-size:15px;
+	line-height:1.4;
+	margin-bottom: -5px;
+}
+
+#share-form {
+	padding:15px 0 25px 0px;
+	text-align:center;
+}
+#share-form input {
+	margin-top: 10px;
+}
+
+#share-popup .button{
+	display:inline-block;
+	background:url('../images/buttons.png') no-repeat;
+	color:white;
+	position:relative;
+	height: 33px;
+	
+	font:15px/30px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	margin-left: 30px;
+	margin-right: 30px;
+	padding: 0 35px 0 40px;
+	text-decoration:none;
+	border:none;
+}
+
+#share-popup .button:last-child{	margin-right:0;}
+
+#share-popup .button span{
+	position:absolute;
+	top:0;
+	right:-5px;
+	background:url('../images/buttons.png') no-repeat;
+	width:5px;
+	height:33px
+}
+
+#share-popup .blue{				background-position:left top;text-shadow:1px 1px 0 #5889a2;}
+#share-popup .blue span{			background-position:-195px 0;}
+#share-popup .blue:hover{		background-position:left bottom;}
+#share-popup .blue:hover span{	background-position:-195px bottom;}
+
+#share-popup .error_msg {
+	text-align: left;
+	margin-left: 45px;
+	margin-bottom: -5px;
+}

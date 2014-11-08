@@ -1,0 +1,22 @@
+{
+  "name": "memoboard",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "engines": {
+    "node": ">= 0.8.14"
+  },
+  "dependencies": {
+    "express": "3.0.2",
+    "jade": "0.27.7",
+    "mongoose": "3.4.0",
+    "connect-mongodb": "1.1.5",
+    "socket.io": "0.9.11",
+    "int-encoder": "0.1.4",
+    "node-thumbnail": "0.4.0",
+    "forms": "0.1.2",
+    "nodemailer": "0.3.35"
+  }
+}

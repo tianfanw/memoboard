@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>jsDatePick</title>
+		<!--
+		****************************************************************************************
+		Dingan Wang - modified version based on
+		Copyright 2010 Itamar Arjuan
+		jsDatePick is distributed under the terms of the GNU General Public License.
+
+		****************************************************************************************
+		-->
+		<link rel="stylesheet" type="text/css" media="all"
+		href="jsDatePick.css" />
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="jsDatesPick-1.3.js"></script>
+		<script type="text/javascript" src="calendar.js"></script>
+	</head>
+	<body>
+		<form>
+			<div id="contentArea">
+				<div id="pollHeader" style="display: block;">
+					<div id="pollInfo">
+						<h2 id="pollTitle" style="font-weight: bold;"></h2>
+						<div id="pollLocation" style="font-weight: bold;"></div>
+					</div>
+					<div id="pollDetails"></div>
+				</div>
+
+				<div id="generalStep" style = "display: block;">
+
+					<div class="generalInfo">
+						<p>
+							<label for="title">Title</label>
+						</p>
+						<p>
+							<input id="title" type="text" class="inputText" maxlength="64" placeholder="Please enter a value < 64 words.">
+						</p>
+
+					</div>
+
+					<div class="generalInfo">
+						<div>
+							<label for="location">Location<span class="grey smallText"> (optional)</span></label>
+							<p>
+								<input id="location" type="text" class="inputText hintText" maxlength="128" placeholder="Enter a location" autocomplete="off">
+							</p>
+						</div>
+
+					</div>
+
+					<div class="generalInfo">
+						<p>
+							<label for="initiatorName">Your name</label>
+						</p>
+						<p>
+							<input id="initiatorName" type="text" class="inputText" maxlength="64">
+						</p>
+					</div>
+
+					<div >
+						<input type="button" id="back1" value="Back" disabled="disabled">
+						<input type="button" id="generalToDates" value="Next" >
+					</div>
+
+				</div>
+
+				<div id="datesPickerStep" style = "display: none;">
+
+					<div id="calendar"></div>
+					<div id="calendar_result"></div>
+
+					<div style = "clear:both;">
+						<input type="button" id="datesBackToGeneral" value="Back" >
+						<input type="button" id="datesToPoll" value="Next" >
+					</div>
+
+				</div>
+
+				<div id="pollStep" style = "display: none;">
+
+					<form class="clearfix">
+						<div id="pollContainer">
+
+						</div>
+					</form>
+
+					<div >
+						<input type="button" id="pollBackToDates" value="Back" >
+						<input type="button" id="finish" value="Finish" >
+					</div>
+
+				</div>
+
+			</div>
+		</form>
+	</body>
+</html>

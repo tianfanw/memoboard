@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  a(href='/boards') Home
+
+  h1 Hello
+  h3 This is board #{board.name}
+  h3 Created at: #{board.created}
+
+  div#drawing-toolbar
+    p ajax upload image:
+    form#uploadForm(method='post', action='/boards/' + board.id64 + '/images/upload', enctype='multipart/form-data')
+      div
+        input(type='file', name='uploadedImage')
+      div
+        input(type='submit',value='Upload')
+    span#status
+  
+  div#gallery
+    each image in images
+      img(src= image.path)
+
+block append javascript
+  script(src='/javascripts/jquery.form.js')
+  script(src='/javascripts/boards.js')

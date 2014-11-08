@@ -1,0 +1,59 @@
+#logIn {
+	background-color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+    margin-top: 20px;
+    z-index: 100;
+}
+
+#Welcome {
+	font-size: 20px;
+	font-family: Gill Sans;
+}
+
+body {
+    background-color:#e4f5bf;
+   /*background-color:#c6c908;*/
+}
+
+#logocloud{
+    position: absolute;
+    right:-500px;
+    z-index:-2;
+}
+
+#leaf{
+    position: fixed;
+    right: -10000px;
+    z-index:-3;
+}
+
+#cloud2 {
+    position:fixed;
+    right: -10000px;
+    z-index:-9;
+}
+
+#cloud3 {
+    position:fixed;
+    right: -10000px;
+    z-index:-5;
+}
+#cloud4 {
+    position:fixed;
+    right: -10000px;
+    z-index:-1;
+}
+
+#pencil {
+    position:fixed;
+    right: -10000px;
+    z-index:-4;
+}
+
+#imgicon {
+    position:fixed;
+    right: -10000px;
+    z-index:-3;
+}
