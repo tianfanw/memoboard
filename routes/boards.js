@@ -641,6 +641,7 @@ exports.updatePng = function(socket, img) {
       height: 300,
       source: boardpath,
       destination: thumbpath,
+      overwrite: true,
     }, function(err) {
       if(err) throw err;
     });
@@ -650,6 +651,7 @@ exports.updatePng = function(socket, img) {
       height: 600,
       source: boardpath,
       destination: thumbpath,
+      overwrite: true,
     }, function(err) {
       if(err) throw err;
     });

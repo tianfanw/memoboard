@@ -1,6 +1,6 @@
 {
   "name": "memoboard",
-  "version": "0.0.1",
+  "version": "0.0.1-3",
   "private": true,
   "scripts": {
     "start": "node app"
@@ -13,10 +13,11 @@
     "jade": "0.27.7",
     "mongoose": "3.4.0",
     "connect-mongodb": "1.1.5",
-    "socket.io": "0.9.11",
+    "socket.io": "0.9.13",
     "int-encoder": "0.1.4",
-    "node-thumbnail": "0.4.0",
+    "node-thumbnail": "0.6.5",
     "forms": "0.1.2",
     "nodemailer": "0.3.35"
-  }
+  },
+  "subdomain": "memoboard.mysun"
 }
